@@ -144,14 +144,17 @@ class FacebookAppEvents {
   /// Parameter [registrationMethod] is used to specify the method the user has
   /// used to register for the app, e.g. "Facebook", "email", "Google", etc.
   /// See: https://developers.facebook.com/docs/reference/androidsdk/current/facebook/com/facebook/appevents/appeventsconstants.html/#eventnamecompletedregistration
-  Future<void> logCompletedRegistration({String? registrationMethod}) {
+  Future<void> logCompletedRegistration(
+      {String? registrationMethod, String? eventId}) {
     return logEvent(
       name: eventNameCompletedRegistration,
       parameters: {
         paramNameRegistrationMethod: registrationMethod,
+        "event_id": eventId, // Conditionally add event_id if provided
       },
     );
   }
+
 
   /// Log this event when the user has rated an item in the app.
   ///
